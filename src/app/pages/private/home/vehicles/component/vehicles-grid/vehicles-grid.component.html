@@ -1,0 +1,37 @@
+<table mat-table [dataSource]="dataSource" class="table-grid">
+
+  <ng-container matColumnDef="ID">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <mat-checkbox (change)="getdrivers($event,element)"></mat-checkbox>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="DESCRIPTION">
+    <th mat-header-cell *matHeaderCellDef> DESCRIPTION</th>
+    <td mat-cell *matCellDef="let element"> {{element.DESCRIPTION}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="YEAR">
+    <th mat-header-cell *matHeaderCellDef> YEAR</th>
+    <td mat-cell *matCellDef="let element"> {{element.YEAR}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="MAKE">
+    <th mat-header-cell *matHeaderCellDef> MAKE</th>
+    <td mat-cell *matCellDef="let element"> {{element.MAKE}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="CAPACITY">
+    <th mat-header-cell *matHeaderCellDef> CAPACITY</th>
+    <td mat-cell *matCellDef="let element"> {{element.CAPACITY}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="ACTIVE">
+    <th mat-header-cell *matHeaderCellDef> ACTIVE</th>
+    <td mat-cell *matCellDef="let element"> {{element.ACTIVE}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

@@ -10,5 +10,12 @@ export interface InterfaceDrivers {
   PHONE:String;
   ACTIVE:Boolean;
 }
-
+export interface InterfaceVehicles{
+  ID:Number;
+  DESCRIPTION:String;
+  YEAR:Number;
+  MAKE:Number;
+  CAPACITY:Number;
+  ACTIVE:Boolean;
+}
 
