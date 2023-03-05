@@ -1,0 +1,73 @@
+<div class="container-form">
+
+  <mat-toolbar-row class="menu-title">
+    <button *ngIf="validformaddoredit" mat-raised-button color="basic" class="button-back" routerLink="/user/routes">
+      Back
+    </button>
+    <h1>
+      {{titleformvehicle}}
+    </h1>
+    <span class="spacer-titlebar"></span>
+    <button *ngIf="validformaddoredit" mat-raised-button color="accent" class="button-back" (click)="buttoneditform()">
+      <mat-icon>edit</mat-icon>
+      Edit
+    </button>
+    <button *ngIf="validformaddoredit" mat-raised-button color="warn" class="button-back" (click)="buttoneditform()">
+      <mat-icon>delete</mat-icon>
+      Delete
+    </button>
+  </mat-toolbar-row>
+
+  <form [formGroup]="formvehicle">
+
+    <div>
+      <mat-form-field class="text-description" appearance="outline">
+        <mat-label>DESCRIPTION</mat-label>
+        <textarea
+          matInput
+          formControlName="DESCRIPTION">
+      </textarea>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="form-add select-form-data">
+      <mat-label>DRIVER</mat-label>
+      <mat-select formControlName="DRIVER">
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let drive of drives" [value]="drive.id">
+          {{ drive.value }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-add select-form-data">
+      <mat-label>VEHICLE</mat-label>
+      <mat-select formControlName="VEHICLE">
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let vehicle of vehicles" [value]="vehicle.id">
+          {{ vehicle.value }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-add select-form-data">
+      <mat-label>ACTIVE</mat-label>
+      <mat-select formControlName="ACTIVE">
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let statuactive of statusactive" [value]="statuactive.value">
+          {{ statuactive.value }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+  </form>
+
+  <div class="button-save">
+    <button mat-raised-button color="primary" (click)="sendformvehicle()" [disabled]="!savebutton">
+      <mat-icon>save</mat-icon>
+      Save
+    </button>
+  </div>
+
+</div>

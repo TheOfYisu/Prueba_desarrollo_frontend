@@ -19,3 +19,11 @@ export interface InterfaceVehicles{
   ACTIVE:Boolean;
 }
 
+export interface InterfaceRoutes{
+  ID:Number;
+  DESCRIPTION:String;
+  DRIVER:String;
+  VEHICLE:String;
+  ACTIVE:Boolean;
+}
+

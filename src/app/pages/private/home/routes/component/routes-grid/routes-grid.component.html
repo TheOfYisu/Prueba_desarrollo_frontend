@@ -1,0 +1,29 @@
+<table
+  mat-table
+  [dataSource]="dataSource"
+  class="table-grid"
+>
+
+  <ng-container matColumnDef="DESCRIPTION">
+    <th mat-header-cell *matHeaderCellDef> DESCRIPTION</th>
+    <td mat-cell *matCellDef="let element"> {{element.DESCRIPTION}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="DRIVER">
+    <th mat-header-cell *matHeaderCellDef> DRIVER</th>
+    <td mat-cell *matCellDef="let element"> {{element.DRIVER}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="VEHICLE">
+    <th mat-header-cell *matHeaderCellDef> VEHICLE</th>
+    <td mat-cell *matCellDef="let element"> {{element.VEHICLE}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="ACTIVE">
+    <th mat-header-cell *matHeaderCellDef> ACTIVE</th>
+    <td mat-cell *matCellDef="let element"> {{element.ACTIVE}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="getdrivers(row.ID)"></tr>
+</table>
