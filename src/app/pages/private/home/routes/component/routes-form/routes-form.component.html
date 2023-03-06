@@ -1,0 +1,166 @@
+<div class="container-form">
+
+  <mat-toolbar-row class="menu-title">
+    <button *ngIf="validformaddoredit" mat-raised-button color="basic" class="button-back" routerLink="/user/routes">
+      Back
+    </button>
+    <h1>
+      {{titleformvehicle}}
+    </h1>
+    <span class="spacer-titlebar"></span>
+    <button *ngIf="validformaddoredit" mat-raised-button color="accent" class="button-back" (click)="buttoneditform()">
+      <mat-icon>edit</mat-icon>
+      Edit
+    </button>
+    <button *ngIf="validformaddoredit" mat-raised-button color="warn" class="button-back" (click)="deleteroute()">
+      <mat-icon>delete</mat-icon>
+      Delete
+    </button>
+  </mat-toolbar-row>
+
+  <form [formGroup]="formroute" *ngIf="this.validformaddoredit!=true">
+
+    <div>
+      <mat-form-field class="text-description" appearance="outline">
+        <mat-label>DESCRIPTION</mat-label>
+        <textarea
+          matInput
+          formControlName="DESCRIPTION">
+      </textarea>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="form-add select-form-data">
+      <mat-label>DRIVER</mat-label>
+      <mat-select formControlName="DRIVER">
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let drive of selectdrivers" [value]="drive.ID">
+          {{ drive.ID }}, {{drive.NAMEDRIVER}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-add select-form-data">
+      <mat-label>VEHICLE</mat-label>
+      <mat-select formControlName="VEHICLE">
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let vehicle of selectvehicles" [value]="vehicle.ID">
+          {{vehicle.ID}}, {{vehicle.MAKE }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-add select-form-data">
+      <mat-label>ACTIVE</mat-label>
+      <mat-select formControlName="ACTIVE">
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let statuactive of statuactives" [value]="statuactive.value">
+          {{statuactive.description}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="button-save">
+      <button mat-raised-button color="primary" (click)="sendformvehicle()" [disabled]="!FormRouteValidator">
+        <mat-icon>save</mat-icon>
+        Save
+      </button>
+    </div>
+
+  </form>
+
+  <form [formGroup]="formrouteedit" *ngIf="this.validformaddoredit!=false">
+
+    <div>
+      <mat-form-field class="text-description" appearance="outline">
+        <mat-label>DESCRIPTION ROUTE</mat-label>
+        <textarea
+          matInput
+          formControlName="DESCRIPTION_ROUTE">
+      </textarea>
+      </mat-form-field>
+    </div>
+
+
+    <mat-form-field appearance="outline" class="form-add select-form-data">
+      <mat-label>ACTIVE</mat-label>
+      <mat-select formControlName="ACTIVE_ROUTE">
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let statuactive of statuactives" [value]="statuactive.value">
+          {{statuactive.description}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <h2>Driver</h2>
+
+    <mat-form-field class="form-add marca" appearance="outline">
+      <mat-label>FIRST NAME</mat-label>
+      <input
+        matInput
+        autocomplete="off"
+        formControlName="FIRST_NAME"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="form-add marca" appearance="outline">
+      <mat-label>LAST NAME</mat-label>
+      <input
+        matInput
+        autocomplete="off"
+        formControlName="LAST_NAME"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="form-add marca" appearance="outline">
+      <mat-label>CITY</mat-label>
+      <input
+        matInput
+        autocomplete="off"
+        formControlName="CITY"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="form-add marca" appearance="outline">
+      <mat-label>ADDRESS</mat-label>
+      <input
+        matInput
+        autocomplete="off"
+        formControlName="ADDRESS"
+      />
+    </mat-form-field>
+
+    <h2>Vehicle</h2>
+
+    <div>
+      <mat-form-field class="text-description" appearance="outline">
+        <mat-label>DESCRIPTION VEHICLE</mat-label>
+        <textarea
+          matInput
+          formControlName="DESCRIPTION_VEHICLE">
+      </textarea>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="form-add marca" appearance="outline">
+      <mat-label>CAPACITY</mat-label>
+      <input
+        matInput
+        autocomplete="off"
+        formControlName="CAPACITY"
+      />
+    </mat-form-field>
+
+    <div class="button-save">
+      <button mat-raised-button color="primary" (click)="sendformvehicle()" [disabled]="!FormRouteValidator">
+        <mat-icon>save</mat-icon>
+        Save
+      </button>
+    </div>
+
+  </form>
+
+
+
+
+</div>

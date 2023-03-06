@@ -63,7 +63,6 @@ export class VehiclesMainComponent {
       }).then((result) => {
         if (result.isConfirmed) {
           this.VehiclesService.deletevehicle(this.datadriver)
-          //.subscribe()
           Swal.fire({
             title: 'Deleted!',
             text: 'Your file has been deleted.',

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {LoginService} from "../../../../../core/services/login.service";
 import {Router} from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-login-main',
@@ -27,8 +28,18 @@ export class LoginMainComponent {
   sendform(){
     if (this.formlogin.valid==true){
       this.LoginService.validatelogin(this.formlogin.value).subscribe(data=>{
-        console.log(data['validator'])
-        this.router.navigate(['/user'])
+        const valid=Boolean(data["token"])
+        if (valid===false){
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...!',
+            text: 'Credential Incorrect.',
+            confirmButtonColor: '#3085d6',
+            toast: true
+          })
+        }else{
+          this.router.navigate(['/user'])
+        }
       })
     }
   }

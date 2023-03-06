@@ -9,10 +9,6 @@
       <mat-icon>edit</mat-icon>
       Edit
     </button>
-    <button mat-raised-button color="warn" class="button-back" (click)="buttoneditform()">
-      <mat-icon>cancel</mat-icon>
-      Cancelar
-    </button>
   </mat-toolbar-row>
 
   <form [formGroup]="formdrivers">
@@ -101,8 +97,8 @@
       <mat-label>ACTIVE</mat-label>
       <mat-select formControlName="ACTIVE">
         <mat-option>--</mat-option>
-        <mat-option *ngFor="let statuactive of statusactive" [value]="statuactive.value">
-          {{ statuactive.value }}
+        <mat-option *ngFor="let statuactive of statuactives" [value]="statuactive.value">
+          {{statuactive.description}}
         </mat-option>
       </mat-select>
     </mat-form-field>

@@ -10,9 +10,12 @@ import {VehiclesService} from "../../../../../../core/services/vehicles.service"
 })
 export class VehiclesFormComponent implements OnInit {
   formvehicle: FormGroup;
-  statusactive = [{value: 'True'}, {value: 'False'}];
+  public statuactives = [
+    {value: 0,description:"DESACTIVO"},
+    {value: 1,description:"ACTIVO"}
+  ];
   titleformvehicle = "Formulario Vehicle";
-  private datadriver = {};
+  private datavehicle = {};
   validformaddoredit: boolean;
 
   constructor(
@@ -38,7 +41,7 @@ export class VehiclesFormComponent implements OnInit {
 
   getvehicle() {
     this.VehiclesService.vehicle$.subscribe(data => {
-      this.datadriver = data
+      this.datavehicle = data
     })
   }
 
@@ -54,7 +57,7 @@ export class VehiclesFormComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         if (this.validformaddoredit == true) {
-          this.VehiclesService.updatevehicle(this.formvehicle.value)
+          this.VehiclesService.updatevehicle(this.formvehicle.value,this.datavehicle['ID'])
         } else {
           this.VehiclesService.addvehicle(this.formvehicle.value)
         }
@@ -87,7 +90,7 @@ export class VehiclesFormComponent implements OnInit {
     this.getAddorEdit()
     if (this.validformaddoredit == true) {
       this.getvehicle()
-      this.formvehicle.patchValue(this.datadriver)
+      this.formvehicle.patchValue(this.datavehicle)
       this.formvehicle.disable()
     }
   }

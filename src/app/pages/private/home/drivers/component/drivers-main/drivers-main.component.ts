@@ -43,8 +43,7 @@ export class DriversMainComponent implements OnInit {
 
   getdriver() {
     this.DriversService.driver$.subscribe(data => {
-      this.datadriver = data
-      console.log(this.datadriver)
+      this.datadriver=data
     })
   }
 
@@ -63,7 +62,6 @@ export class DriversMainComponent implements OnInit {
       }).then((result) => {
         if (result.isConfirmed) {
           this.DriversService.deletedriver(this.datadriver)
-          //.subscribe()
           Swal.fire({
             title: 'Deleted!',
             text: 'Your file has been deleted.',
@@ -88,6 +86,7 @@ export class DriversMainComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
   openDialog(): void {
