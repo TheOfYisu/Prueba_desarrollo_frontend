@@ -38,7 +38,7 @@
         </span>
       </button>
       <mat-menu #menu="matMenu" class="menu-user-option" xPosition="before">
-        <button mat-menu-item>Cerrar session</button>
+        <button mat-menu-item (click)="cerrarsesion()">Cerrar session</button>
       </mat-menu>
     </mat-toolbar>
     <router-outlet></router-outlet>
