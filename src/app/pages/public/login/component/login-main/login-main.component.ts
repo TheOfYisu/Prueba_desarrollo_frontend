@@ -29,7 +29,12 @@ export class LoginMainComponent {
     if (this.formlogin.valid==true){
       this.LoginService.validatelogin(this.formlogin.value).subscribe(data=>{
         const valid=Boolean(data["token"])
-        if (valid===false){
+        localStorage.setItem('token',data["token"])
+        localStorage.setItem('username',data["username"])
+        if (valid){
+          this.LoginService.chamlogin(valid);
+          this.router.navigate(['/user/drivers'])
+        }else{
           Swal.fire({
             icon: 'error',
             title: 'Oops...!',
@@ -37,8 +42,7 @@ export class LoginMainComponent {
             confirmButtonColor: '#3085d6',
             toast: true
           })
-        }else{
-          this.router.navigate(['/user'])
+          this.LoginService.chamlogin(valid);
         }
       })
     }
