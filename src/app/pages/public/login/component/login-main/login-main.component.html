@@ -1,0 +1,20 @@
+<div class="body-login">
+  <div class="container-login">
+    <img [src]="logo" class="img_logo_login">
+    <h1>Iniciar Sesion</h1>
+    <form [formGroup]="formlogin" class="form-login">
+      <mat-form-field class="input-login">
+        <mat-label>Usuario</mat-label>
+        <input matInput formControlName="user" autocomplete="off">
+      </mat-form-field>
+      <mat-form-field class="input-login" appearance="fill">
+        <mat-label>Contraseña</mat-label>
+        <input type="password" formControlName="password" matInput autocomplete="off">
+      </mat-form-field>
+      <div class="button-options">
+        <a mat-button href="#!" target="_blank">Forgot password?</a>
+        <button mat-raised-button color="primary" class="button-valid-login" (click)="sendform()" [disabled]="!FormLoginValidator">Sign in</button>
+      </div>
+    </form>
+  </div>
+</div>

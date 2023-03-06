@@ -1,0 +1,81 @@
+<div class="container-form">
+
+  <mat-toolbar-row class="menu-title">
+    <h1>
+      {{titleformvehicle}}
+    </h1>
+    <span class="spacer-titlebar"></span>
+    <button *ngIf="validformaddoredit" mat-raised-button color="accent" class="button-back" (click)="buttoneditform()">
+      <mat-icon>edit</mat-icon>
+      Edit
+    </button>
+    <button mat-raised-button color="warn" class="button-back" (click)="buttoneditform()">
+      <mat-icon>cancel</mat-icon>
+      Cancelar
+    </button>
+  </mat-toolbar-row>
+
+  <form [formGroup]="formvehicle">
+
+    <div>
+    <mat-form-field class="text-description" appearance="outline">
+      <mat-label>DESCRIPTION</mat-label>
+      <textarea
+        matInput
+        formControlName="DESCRIPTION">
+      </textarea>
+    </mat-form-field>
+    </div>
+
+    <mat-form-field class="form-add marca" appearance="outline">
+      <mat-label>YEAR</mat-label>
+      <input
+        type="number"
+        matInput
+        placeholder="2023"
+        autocomplete="off"
+        formControlName="YEAR"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="form-add marca" appearance="outline">
+      <mat-label>MAKE</mat-label>
+      <input
+        type="number"
+        matInput
+        placeholder="2023"
+        autocomplete="off"
+        formControlName="MAKE"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="form-add marca" appearance="outline">
+      <mat-label>CAPACITY</mat-label>
+      <input
+        matInput
+        placeholder="152"
+        autocomplete="off"
+        formControlName="CAPACITY"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-add select-form-data">
+      <mat-label>ACTIVE</mat-label>
+      <mat-select formControlName="ACTIVE">
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let statuactive of statuactives" [value]="statuactive.value">
+          {{statuactive.description}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </form>
+
+  <div class="button-save">
+    <button mat-raised-button color="primary" (click)="sendformvehicle()" [disabled]="!getFormVehicleValidator">
+      <mat-icon>save</mat-icon>
+      Save
+    </button>
+  </div>
+
+</div>

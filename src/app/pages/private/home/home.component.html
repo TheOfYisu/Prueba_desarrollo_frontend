@@ -1,0 +1,49 @@
+<mat-sidenav-container class="container-home">
+  <mat-sidenav mode="side" opened class="container-sidenav">
+    <mat-list role="list">
+      <mat-toolbar class="img-menuvar-home"><img src="https://cdn-icons-png.flaticon.com/512/2897/2897785.png" width="25%" class="img-menuvar-home"> Menu</mat-toolbar>
+      <mat-list-item role="listitem">
+        <a mat-button routerLink="/user/drivers" class="button-list">
+          <mat-icon class="icon-list">face</mat-icon>
+          Drivers
+        </a>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <a mat-button routerLink="/user/vehicles" class="button-list">
+          <mat-icon>drive_eta</mat-icon>
+          Vehicles
+        </a>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <a mat-button routerLink="/user/routes" class="button-list">
+          <mat-icon>commute</mat-icon>
+          Routes
+        </a>
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="toolbar">
+      <span style="color: #FFFFFF">My App</span>
+      <span class="spacer-toolbar"></span>
+      <button mat-button [matMenuTriggerFor]="menu" class="button-options" style="color: black">
+        <span class="icon-option">
+          <mat-icon>person</mat-icon>
+        </span>
+        <span class="text-option">
+          {{username}}
+        </span>
+        <span class="icon-option">
+          <mat-icon>more_vert</mat-icon>
+        </span>
+      </button>
+      <mat-menu #menu="matMenu" class="menu-user-option" xPosition="before">
+        <button mat-menu-item (click)="cerrarsesion()">Cerrar session</button>
+      </mat-menu>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+

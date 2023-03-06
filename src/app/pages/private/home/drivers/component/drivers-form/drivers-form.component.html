@@ -1,0 +1,115 @@
+<div class="container-form">
+
+  <mat-toolbar-row class="menu-title">
+    <h1>
+      {{titleformdevice}}
+    </h1>
+    <span class="spacer-titlebar"></span>
+    <button *ngIf="validformaddoredit" mat-raised-button color="accent" class="button-back" (click)="buttoneditform()">
+      <mat-icon>edit</mat-icon>
+      Edit
+    </button>
+  </mat-toolbar-row>
+
+  <form [formGroup]="formdrivers">
+
+    <mat-form-field class="form-add marca" appearance="outline">
+      <mat-label>FIRST NAME</mat-label>
+      <input
+        matInput
+        placeholder="Jesus"
+        autocomplete="off"
+        formControlName="FIRST_NAME"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="form-add marca" appearance="outline">
+      <mat-label>LAST NAME</mat-label>
+      <input
+        matInput
+        placeholder="Garizao"
+        autocomplete="off"
+        formControlName="LAST_NAME"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="form-add marca" appearance="outline">
+      <mat-label>SSD</mat-label>
+      <input
+        matInput
+        placeholder="123456789"
+        autocomplete="off"
+        formControlName="SSD"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>MM/DD/YYYY</mat-label>
+      <input matInput [matDatepicker]="dp3" formControlName="DOB">
+      <mat-datepicker-toggle matIconSuffix [for]="dp3"></mat-datepicker-toggle>
+      <mat-datepicker #dp3></mat-datepicker>
+    </mat-form-field>
+
+
+    <mat-form-field class="form-add marca" appearance="outline">
+      <mat-label>ADDRESS</mat-label>
+      <input
+        matInput
+        placeholder="jesudgm.11@outlook.com"
+        autocomplete="off"
+        formControlName="ADDRESS"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="form-add marca" appearance="outline">
+      <mat-label>CITY</mat-label>
+      <input
+        matInput
+        placeholder="Barranquilla"
+        autocomplete="off"
+        formControlName="CITY"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="form-add marca" appearance="outline">
+      <mat-label>ZIP Code</mat-label>
+      <input
+        matInput
+        type="number"
+        placeholder="92144"
+        autocomplete="off"
+        formControlName="ZIP"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="form-add marca" appearance="outline">
+      <mat-label>PHONE</mat-label>
+      <input
+        matInput
+        type="number"
+        placeholder="3044300927"
+        autocomplete="off"
+        formControlName="PHONE"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-add select-form-data">
+      <mat-label>ACTIVE</mat-label>
+      <mat-select formControlName="ACTIVE">
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let statuactive of statuactives" [value]="statuactive.value">
+          {{statuactive.description}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </form>
+
+  <div class="button-save">
+    <button mat-raised-button color="primary" (click)="sendformderiver()" [disabled]="!getFormDeviceValidator">
+      <mat-icon>save</mat-icon>
+      Save
+    </button>
+  </div>
+
+</div>
