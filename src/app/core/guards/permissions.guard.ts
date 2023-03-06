@@ -16,7 +16,7 @@ export class PermissionsGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    if (this.hasUser()  &&  typeof localStorage !=='undefined'){
+    if (this.hasUser()  ||  typeof localStorage !=='undefined'){
       console.log("true")
       return true
     }
