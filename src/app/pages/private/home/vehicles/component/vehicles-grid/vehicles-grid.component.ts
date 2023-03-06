@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {MatCheckboxChange} from "@angular/material/checkbox";
 import {VehiclesService} from "../../../../../../core/services/vehicles.service";
+import {Active_enum} from "../../../../../../core/enums/general-enums";
 
 @Component({
   selector: 'app-vehicles-grid',
@@ -12,6 +13,8 @@ export class VehiclesGridComponent {
   public driver
   dataSource !: MatTableDataSource<any>;
   displayedColumns: string[] = ['ID', 'DESCRIPTION', 'YEAR', 'MAKE','CAPACITY','ACTIVE'];
+
+  public Active_enum = Active_enum;
 
   constructor(
     private VehiclesService: VehiclesService
@@ -39,6 +42,7 @@ export class VehiclesGridComponent {
 
   ngOnInit(): void {
     this.getlistdrivers()
+
   }
 
 }

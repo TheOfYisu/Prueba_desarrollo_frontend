@@ -8,7 +8,7 @@ export interface InterfaceDrivers {
   CITY:String;
   ZIP:String;
   PHONE:String;
-  ACTIVE:Boolean;
+  ACTIVE:Number;
 }
 export interface InterfaceVehicles{
   ID:Number;
@@ -26,4 +26,5 @@ export interface InterfaceRoutes{
   VEHICLE:String;
   ACTIVE:Boolean;
 }
+
 

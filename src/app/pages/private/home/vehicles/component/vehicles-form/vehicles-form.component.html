@@ -39,17 +39,6 @@
     </mat-form-field>
 
     <mat-form-field class="form-add marca" appearance="outline">
-      <mat-label>YEAR</mat-label>
-      <input
-        type="number"
-        matInput
-        placeholder="2023"
-        autocomplete="off"
-        formControlName="YEAR"
-      />
-    </mat-form-field>
-
-    <mat-form-field class="form-add marca" appearance="outline">
       <mat-label>MAKE</mat-label>
       <input
         type="number"
@@ -74,8 +63,8 @@
       <mat-label>ACTIVE</mat-label>
       <mat-select formControlName="ACTIVE">
         <mat-option>--</mat-option>
-        <mat-option *ngFor="let statuactive of statusactive" [value]="statuactive.value">
-          {{ statuactive.value }}
+        <mat-option *ngFor="let statuactive of statuactives" [value]="statuactive.value">
+          {{statuactive.description}}
         </mat-option>
       </mat-select>
     </mat-form-field>

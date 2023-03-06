@@ -9,3 +9,10 @@ export enum Drivers_enum {
   "PHONE"=8,
   "ACTIVE"=9
 }
+
+export enum Active_enum {
+  "false"="DESACTIVO",
+  "true"="ACTIVO",
+
+}
+

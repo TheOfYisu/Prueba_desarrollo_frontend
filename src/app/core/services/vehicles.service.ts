@@ -1,30 +1,23 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
-import {InterfaceVehicles} from "../interface/interface-generales";
+import {InterfaceDrivers, InterfaceVehicles} from "../interface/interface-generales";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
 
-const ELEMENT_DATA: InterfaceVehicles[] = [
-  {
-    ID:1,
-    DESCRIPTION:"La descripción de cargos es la base para lograr coherencia entre las expectativas de un cargo y el desempeño de las personas que lo ocupen. Por lo tanto, es la base para implementar toda planeación en el área de gestión humana.",
-    YEAR:2023,
-    MAKE:15,
-    CAPACITY:45,
-    ACTIVE:true
-  },
-  {
-    ID:1,
-    DESCRIPTION:"holamundo",
-    YEAR:2023,
-    MAKE:15,
-    CAPACITY:45,
-    ACTIVE:true
-  },
-];
 
 @Injectable({
   providedIn: 'root'
 })
 export class VehiclesService {
+
+  constructor(
+    private http: HttpClient
+  ) {
+    this.getlistvehicles();
+  }
+
+  private urlback = environment.urlback
+
   private listvehicles = new BehaviorSubject<InterfaceVehicles[]>([]);
   listvehicles$ = this.listvehicles.asObservable();
 
@@ -35,7 +28,9 @@ export class VehiclesService {
   valitformAddorEdit$ = this.valitformAddorEdit.asObservable();
 
   getlistvehicles() {
-    return this.listvehicles.next(ELEMENT_DATA);
+    this.http.get<InterfaceVehicles[]>(`${this.urlback}/getvehicle`).subscribe(data=> {
+      return this.listvehicles.next(data);
+    })
   }
 
   getvehicle(vehicleget: InterfaceVehicles) {
@@ -44,22 +39,19 @@ export class VehiclesService {
   }
 
   addvehicle(datavehicle: InterfaceVehicles) {
-    console.log(datavehicle);
+    return this.http.post<InterfaceDrivers>(`${this.urlback}/addvehicle`,datavehicle).subscribe()
   }
 
-  deletevehicle(id) {
-    this.listvehicles.next([...this.listvehicles.value, id]);
+  deletevehicle(idvehicle) {
+    return this.http.delete<InterfaceDrivers>(`${this.urlback}/deletevehicle/${idvehicle["ID"]}`).subscribe()
+
   }
 
-  updatevehicle(datavehicle: InterfaceVehicles) {
-    console.log(datavehicle);
+  updatevehicle(datavehicle: InterfaceVehicles,iddriver) {
+    return this.http.put<InterfaceDrivers>(`${this.urlback}/updatevehicle/${iddriver}`,datavehicle).subscribe()
   }
 
   chargevar(i) {
     this.valitformAddorEdit.next(i)
-  }
-
-  constructor() {
-    this.getlistvehicles();
   }
 }

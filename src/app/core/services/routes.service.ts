@@ -1,53 +1,66 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject} from "rxjs";
-import {InterfaceRoutes, InterfaceVehicles} from "../interface/interface-generales";
+import {BehaviorSubject, identity} from "rxjs";
+import {InterfaceRoutes} from "../interface/interface-generales";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
 
-const ELEMENT_DATA: InterfaceRoutes[] = [
-  {
-    ID:1,
-    DESCRIPTION:"La descripción de cargos es la base para lograr coherencia entre las expectativas de un cargo y el desempeño de las personas que lo ocupen. Por lo tanto, es la base para implementar toda planeación en el área de gestión humana.",
-    DRIVER:"15",
-    VEHICLE:"45",
-    ACTIVE:true
-  },
-  {
-    ID:4,
-    DESCRIPTION:"La descripción de cargos es la base para lograr coherencia entre las expectativas de un cargo y el desempeño de las personas que lo ocupen. Por lo tanto, es la base para implementar toda planeación en el área de gestión humana.",
-    DRIVER:"15",
-    VEHICLE:"45",
-    ACTIVE:true
-  },
-];
 @Injectable({
   providedIn: 'root'
 })
 export class RoutesService {
+  constructor(
+    private http: HttpClient
+  ) {
+    this.getlistvehicles();
+    this.getListDriverVehicle();
+  }
+  private urlback = environment.urlback;
   private listroutes = new BehaviorSubject<InterfaceRoutes[]>([]);
   listroutes$ = this.listroutes.asObservable();
+
+  private listrdriver = new BehaviorSubject<[]>([]);
+  listrdriver$ = this.listrdriver.asObservable();
+
+  private listrvehicle = new BehaviorSubject<[]>([]);
+  listrvehicle$ = this.listrvehicle.asObservable();
 
   private valitformAddorEdit = new BehaviorSubject(true);
   valitformAddorEdit$ = this.valitformAddorEdit.asObservable();
 
+  private allrouter = new BehaviorSubject<[]>([]);
+  allrouter$ = this.allrouter.asObservable();
+
   getlistvehicles() {
-    return this.listroutes.next(ELEMENT_DATA);
+    this.http.get<InterfaceRoutes[]>(`${this.urlback}/getroutes`).subscribe(data=> {
+      return this.listroutes.next(data);
+    })
   }
   chargevar(i) {
-    this.valitformAddorEdit.next(i)
+    this.valitformAddorEdit.next(i);
   }
 
-  addroute(datavehicle: InterfaceVehicles) {
-    console.log(datavehicle);
+  getListDriverVehicle(){
+    this.http.get<[]>(`${this.urlback}/getifoformsrouter`).subscribe(data=> {
+      this.listrdriver.next(data['listdriver'])
+      this.listrvehicle.next(data['listvehicle'])
+    })
   }
 
-  deleteroute(id) {
-    this.listroutes.next([...this.listroutes.value, id]);
+  addroute(dataroute: InterfaceRoutes) {
+    return this.http.post<InterfaceRoutes>(`${this.urlback}/addroute`,dataroute).subscribe()
   }
 
-  updateroute(datavehicle: InterfaceVehicles) {
-    console.log(datavehicle);
+  deleteroute(idroute) {
+    return this.http.delete<InterfaceRoutes>(`${this.urlback}/deleteroute/${idroute}`).subscribe()
   }
 
-  constructor() {
-    this.getlistvehicles();
+  updateroute(datavehicle: InterfaceRoutes,idroute) {
+    return this.http.put<InterfaceRoutes>(`${this.urlback}/updateroute/${idroute}`,datavehicle).subscribe()
+  }
+
+  getroute(idroute){
+    this.http.get<[]>(`${this.urlback}/getroute/${idroute}`).subscribe(data=> {
+      return this.allrouter.next(data)
+    })
   }
 }
